@@ -50,7 +50,7 @@ async function stats() {
 
         const humans = result.humans[0].value
         const mutants = result.mutants[0].value
-        const ratio = humans / mutants
+        const ratio = mutants == 0 ? 1 : humans / mutants
 
         return {
             count_mutant_dna: mutants,
