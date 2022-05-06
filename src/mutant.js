@@ -1,4 +1,3 @@
-
 const Diagonal = Symbol("diagonal")
 const Vertical = Symbol("vertical")
 const Horizontal = Symbol("horizontal")

@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const isMutant = require('./mutant.js');
+const db = require('./db.js');
 
 
 app.set('port', process.env.PORT || 3000);
@@ -10,10 +11,18 @@ app.get('/', (req, res) => {
     res.sendStatus(200);
 })
 
-app.post('/mutant', (req, res) => {
-    const body = req.body;
+app.get('/stats', async (req, res) => {
+    const resp = await db.stats()
 
-    const result = isMutant(body.dna)
+    res.json(resp);
+})
+
+app.post('/mutant', (req, res) => {
+    const dna = req.body.dna;
+
+    const result = isMutant(dna)
+
+    db.saveDna(dna.join(), result);
 
     if (result) {
         res.sendStatus(200);
