@@ -28,8 +28,6 @@ function validatorDna(direction, dna) {
 
 
     for (var i = 0; i < firstLimit; i++) {
-        if (isMatch) break
-
         for (var j = 0; j <= secondLimit; j++) {
             isMatch = true;
             var sequence = [];
@@ -72,7 +70,7 @@ module.exports = function isMutant(dna) {
 
     if (result) return true;
 
-    const transformDna = dna.map(str => str.split('').reverse().join('')).reverse();
+    const transformDna = dna.map(str => str.split('').reverse().join(''));
 
     return validatorDna(Diagonal, transformDna)
 }

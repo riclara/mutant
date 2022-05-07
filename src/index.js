@@ -31,6 +31,8 @@ app.post('/mutant', (req, res) => {
     }
 })
 
-app.listen(app.get('port'), () => {
+const server = app.listen(app.get('port'), async () => {
     console.log(`Server listening on port ${app.get('port')}`);
 });
+
+module.exports = { app, server };
